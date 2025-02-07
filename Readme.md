@@ -16,4 +16,3 @@ This project utilizes **YOLO v11** and **OpenCV** in Python to detect vehicle co
 - **OpenCV** (Image processing and real-time tracking)
 - **Python** (Core programming language)
 
-## 📂 Project Structure
