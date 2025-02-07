@@ -20,7 +20,7 @@ f = open("./test_file.txt", "+a")
 # current_frame_number_plate_ids = set()
 
 # load video
-video_path = './vehicles_e017kHOQ.mp4'
+video_path = './vehicles_resized.mp4'
 
 cap = cv2.VideoCapture(video_path)
 
@@ -32,14 +32,13 @@ reader = easyocr.Reader(['en'], gpu=True)
     # [-550, 2159]
 
 
-# A, B, C, D = (240, 159), (900, 100), (900, 400), (-400, 500)
+# A, B, C, D = (300, 350), (900, 350), (2700, 1200), (601, 1200)
 
-A, B, C, D = (1252, 787), (2298, 803), (5039, 2159), (-550, 2159)
-
+A, B, C, D = (175, 135), (396, 139), (509, 190), (103, 191)
 
 image_pts = [A, B, C, D]
 # M6 is roughly 32 meters wide and 140 meters long there.
-world_pts = [(0, 0), (24, 0), (24, 249), (0, 249)] 
+world_pts = [(0, 0), (20, 0), (100, 100), (0, 100)] 
 
 mapper = Cam2WorldMapper()
 mapper.find_perspective_transform(image_pts, world_pts)
@@ -199,13 +198,13 @@ def detect_license_plate(frame):
 
 ######################## Testing on an Image ##############################
 
-# results = model.predict("./car_plate.jpeg")
+# results = plate_detection_model.predict("./car_plate.jpeg")
 # img_path = "./car_plate2.jpeg"
 # image = cv2.imread(img_path)
 # # cv2.imshow("OpenCV Image",image)
 # # cv2.waitKey(0)	
 # print(image)
-# results = model.predict(img_path)
+# results = plate_detection_model.predict(img_path)
 # out = results[0].plot()
 
 # plate = results[0].boxes.xyxy[0]
@@ -225,18 +224,6 @@ def detect_license_plate(frame):
 # print("Detected Plate Text: ", plate_text)
 
 ###########################////////////////////////##############################
-
-# A, B, C, D = (300, 350), (900, 350), (2700, 1200), (601, 1200)
-
-A, B, C, D = (175, 135), (396, 139), (509, 190), (103, 191)
-
-image_pts = [A, B, C, D]
-# M6 is roughly 32 meters wide and 140 meters long there.
-world_pts = [(0, 0), (20, 0), (100, 100), (0, 100)] 
-
-mapper = Cam2WorldMapper()
-mapper.find_perspective_transform(image_pts, world_pts)
-
 
 
 ret = True
